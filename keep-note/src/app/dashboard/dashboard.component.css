@@ -1,0 +1,19 @@
+.dashboard {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /*.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 20px;
+  }*/
+
+  app-note-view {
+    width: 250px;
+    height: auto;
+    margin: 20px;
+  }

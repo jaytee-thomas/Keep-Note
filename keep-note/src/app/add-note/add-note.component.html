@@ -1,0 +1,20 @@
+<div class="add-note-container">
+  <input class="id" [(ngModel)]="note.id" type="text" placeholder="Enter id" />
+  <input
+    class="title"
+    [(ngModel)]="note.title"
+    type="text"
+    placeholder="Enter title"
+  />
+  <input
+    class="text-area"
+    [(ngModel)]="note.content"
+    type="text"
+    placeholder="Enter content"
+  />
+  <br />
+  <button (click)="addNote()">
+    Add Note
+    <img src="../../assets/images/add-note.svg" alt="icon" width="24px" />
+  </button>
+</div>

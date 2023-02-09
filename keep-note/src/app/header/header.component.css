@@ -1,0 +1,12 @@
+.mat-toolbar {
+    background-color: lightblue;
+    color: rgb(103, 102, 102);
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  img {
+    height: 30px;
+    margin-right: 10px;
+  }
+  
