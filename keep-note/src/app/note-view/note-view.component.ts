@@ -1,22 +1,49 @@
-import { Component, OnInit } from '@angular/core';
-import { NOTES } from '../../models/notes';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { NoteService } from '../services/note.service';
+import { Note } from '../../models/note';
 
 @Component({
   selector: 'app-note-view',
   templateUrl: './note-view.component.html',
-  styleUrls: ['./note-view.component.css'],
+  styleUrls: ['./note-view.component.css']
 })
 export class NoteViewComponent implements OnInit {
-  notes = NOTES;
-  filteredNotes = NOTES;
+  notes: Note[] = [];
+  
+  @Output() noteAdded = new EventEmitter<Note>();
 
-  constructor() {}
+  constructor(private noteService: NoteService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.noteService.getNotes().subscribe(
+      (notes: Note[]) => {
+        this.notes = notes;
+      },
+      (error) => {
+        console.error(error);
+        alert('Failed to fetch notes.');
+      }
+    );
+  }
+
   onSearchTextChanged(searchText: string) {
-      // code to filter notes array based on searchText
-      (this.filteredNotes = this.notes.filter((note) =>
-        note.title.includes(searchText)
-      ));
+    if (searchText) {
+      this.noteService.getNotes().subscribe(notes => {
+        this.notes = notes.filter(note => note.title.includes(searchText));
+      }, error => {
+        // handle error here
+      });
+    } else {
+      this.noteService.getNotes().subscribe(notes => {
+        this.notes = notes;
+      }, error => {
+        // handle error here
+      });
+    }
+  }
+  
+  
+  onNoteAdded(note: Note) {
+    this.notes.push(note);
   }
 }

@@ -1,12 +1,11 @@
 <div class="search-box">
   <div class="search">
     <div class="search-container">
-      <input type="text" [(ngModel)]="searchText">
-      <button (click)="searchNote()">Search
+      <input type="text" [(ngModel)]="searchText" (ngModelChange)="onSearchTextChanged()"/>
+      <button (click)="searchNote()" >
+        Search
         <img src="../../assets/images/find (2).svg" alt="icon" width="18px" />
       </button>
     </div>
-    </div>
+  </div>
 </div>
-
-  
