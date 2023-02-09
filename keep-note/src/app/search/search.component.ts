@@ -6,7 +6,6 @@ import { NoteService } from '../services/note.service';
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
 })
-
 export class SearchComponent {
   @Output() searchTextChanged = new EventEmitter<string>();
   searchText: string = '';
@@ -22,13 +21,15 @@ export class SearchComponent {
   onSearchTextChanged() {
     this.searchTextChanged.emit(this.searchText);
     if (this.searchText) {
-      this.noteService.getNotes().subscribe(notes => {
-        this.notes = notes.filter(note => {
-          return note.title.toLowerCase().includes(this.searchText.toLowerCase());
+      this.noteService.getNotes().subscribe((notes) => {
+        this.notes = notes.filter((note) => {
+          return note.title
+            .toLowerCase()
+            .includes(this.searchText.toLowerCase());
         });
       });
     } else {
-      this.noteService.getNotes().subscribe(notes => {
+      this.noteService.getNotes().subscribe((notes) => {
         this.notes = notes;
       });
     }
