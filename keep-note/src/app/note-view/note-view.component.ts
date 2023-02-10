@@ -32,12 +32,16 @@ export class NoteViewComponent implements OnInit {
         this.notes = notes.filter(note => note.title.includes(searchText));
       }, error => {
         // handle error here
+        console.error(error);
+        alert('Failed to fetch notes.');
       });
     } else {
       this.noteService.getNotes().subscribe(notes => {
         this.notes = notes;
       }, error => {
         // handle error here
+        console.error(error);
+        alert('Failed to fetch notes.');
       });
     }
   }

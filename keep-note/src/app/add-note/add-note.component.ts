@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { NoteService } from '../services/note.service';
-//import { NOTES } from '../../models/notes';
+import { NOTES } from '../../models/notes';
 import { Note } from '../../models/note';
 
 @Component({
@@ -9,31 +8,20 @@ import { Note } from '../../models/note';
   styleUrls: ['./add-note.component.css'],
 })
 export class AddNoteComponent {
+  @Output() noteAdded = new EventEmitter<any>();
+  isVisible = false;
+
+  toggleVisibility() {
+    this.isVisible = !this.isVisible;
+  }
+
   note: Note = {
     id: 0,
     title: '',
     content: '',
   };
-
-  @Output() noteAdded = new EventEmitter<Note>();
-
-  constructor(private noteService: NoteService) {}
-
   addNote() {
-    this.noteService.addNote(this.note).subscribe(
-      (data) => {
-        alert('Note Added');
-        this.noteAdded.emit(this.note);
-        this.note = {
-          id: 0,
-          title: '',
-          content: '',
-        };
-      },
-      (error) => {
-        console.error('Error while adding note', error);
-        alert('Error while adding note');
-      }
-    );
+    NOTES.push(this.note);
+    this.note = { id: 0, title: '', content: '' };
   }
 }

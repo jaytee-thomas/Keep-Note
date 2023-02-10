@@ -1,20 +1,58 @@
-<div class="add-note-container">
-  <input class="id" [(ngModel)]="note.id" type="text" placeholder="Enter id" />
-  <input
-    class="title"
-    [(ngModel)]="note.title"
-    type="text"
-    placeholder="Enter title"
-  />
-  <input
-    class="text-area"
-    [(ngModel)]="note.content"
-    type="text"
-    placeholder="Enter content"
-  />
-  <br />
-  <button (click)="addNote()">
-    Add Note
-    <img src="../../assets/images/add-note.svg" alt="icon" width="24px" />
-  </button>
+<button class="add-btn" (click)="isVisible = !isVisible">Add Note</button>
+
+<div *ngIf="isVisible">
+  <div class="add-note-container">
+    <input
+      class="id"
+      [(ngModel)]="note.id"
+      type="text"
+      placeholder="Enter id"
+      required
+      #idInput="ngModel"
+    />
+    <div
+      *ngIf="idInput.invalid && (idInput.dirty || idInput.touched)"
+      class="error-message-id"
+    >
+           Enter a valid id.
+    </div>
+    <input
+      class="title"
+      [(ngModel)]="note.title"
+      type="text"
+      placeholder="Enter title"
+      required
+      #titleInput="ngModel"
+    />
+    <div
+      *ngIf="titleInput.invalid && (titleInput.dirty || titleInput.touched)"
+      class="error-message-title"
+    >
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Enter a valid title.
+    </div>
+    <textarea
+      class="text-area"
+      [(ngModel)]="note.content"
+      type="text"
+      placeholder="Enter content"
+      required
+      #contentInput="ngModel"
+    ></textarea>
+    <div
+      *ngIf="
+        contentInput.invalid && (contentInput.dirty || contentInput.touched)
+      "
+      class="error-message-content"
+    >
+    &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Enter valid content.
+    </div>
+    <br />
+    <button
+      (click)="addNote()"
+      [disabled]="idInput.invalid || titleInput.invalid || contentInput.invalid"
+    >
+      Add Note
+      <img src="../../assets/images/add-note.svg" alt="icon" width="24px" />
+    </button>
+  </div>
 </div>

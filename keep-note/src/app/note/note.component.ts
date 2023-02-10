@@ -4,17 +4,22 @@ import { Note } from '../../models/note';
 @Component({
   selector: 'app-note',
   templateUrl: './note.component.html',
-  styleUrls: ['./note.component.css']
+  styleUrls: ['./note.component.css'],
 })
 export class NoteComponent implements OnInit {
-  @Input() 
+  @Input()
   note?: Note;
+  isButtonsVisible = false;
 
-  constructor() { 
-    
+  constructor() {}
+
+  ngOnInit() {}
+
+  showButtons() {
+    this.isButtonsVisible = true;
   }
 
-  ngOnInit() {
+  hideButtons() {
+    this.isButtonsVisible = false;
   }
-
 }

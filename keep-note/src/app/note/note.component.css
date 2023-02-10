@@ -1,19 +1,52 @@
 .note-card {
-  width: 300px;
   margin: 16px;
   background-color: lightblue;
   color: white;
   border-radius: 4px;
-  display: inline-block;
-  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  
 }
 
-.note-card mat-card-header {
+mat-card-header {
+  align-self: flex-start;
+  width: 94%;
   background-color: grey;
   border-radius: 4px 4px 0 0;
   padding: 10px;
 }
 
-.note-card mat-card-content {
-  padding: 16px;
+mat-card-content {
+  align-self: center;
+  width: 100%;
+  padding: 10px;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.mat-card-actions {
+  align-self: flex-end;
+  padding: 10px;
+}
+
+.hidden-buttons {
+  display: none;
+}
+
+.note-card:hover .hidden-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.note-card mat-icon {
+  margin-left: 10px;
 }
